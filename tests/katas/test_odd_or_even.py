@@ -30,6 +30,14 @@ def test_odd_or_even_returns_odd(input_array):
     assert result == "odd"
 
 
+def test_odd_or_even_returns_string(input_array):
+    # act
+    result = odd_or_even(input_array)
+
+    # assert
+    assert type(result) == str
+
+
 @pytest.mark.parametrize("input_array", [
     "foo, bar and things",
     1

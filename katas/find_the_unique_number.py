@@ -12,4 +12,7 @@ from collections import Counter
 
 
 def find_uniq(arr):
+    if type(arr) != list:
+        raise TypeError("Input must be a list")
+
     return Counter(arr).most_common()[-1][0]

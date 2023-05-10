@@ -37,3 +37,11 @@ def test_is_pangram_raises_type_error_when_input_is_not_a_string():
     # arrange, act and assert
     with pytest.raises(TypeError):
         is_pangram(765)
+
+
+def test_is_pangram_returns_boolean_type():
+    # act
+    result = is_pangram("foobar")
+
+    # assert
+    assert type(result) is bool

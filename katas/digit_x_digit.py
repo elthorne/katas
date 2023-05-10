@@ -12,30 +12,8 @@ Happy Coding!
 """
 
 
-def square_digits_one_liner(input_number: int):
+def square_digits(input_number: int):
     if type(input_number) != int:
         raise TypeError("Input number must be an int")
+
     return int("".join(map(str, [int(digit) ** 2 for digit in str(input_number)])))
-
-
-def square_digits_verbose_original(input_number: int):
-    # int
-    if type(input_number) != int:
-        raise TypeError("Input number must be an int")
-
-    list_of_squared_intergers = []
-
-    # string
-    string_number = str(input_number)
-
-    for digit in string_number:
-        # int
-        integer_digit = int(digit)
-        list_of_squared_intergers.append(integer_digit**2)
-
-    # string
-    concatenated_string_result = "".join(map(str, list_of_squared_intergers))
-
-    # integer
-    integer_result = int(concatenated_string_result)
-    return integer_result
