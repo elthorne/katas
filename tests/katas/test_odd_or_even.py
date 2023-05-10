@@ -30,9 +30,9 @@ def test_odd_or_even_returns_odd(input_array):
     assert result == "odd"
 
 
-def test_odd_or_even_returns_string(input_array):
+def test_odd_or_even_returns_string():
     # act
-    result = odd_or_even(input_array)
+    result = odd_or_even([0, 1, 2])
 
     # assert
     assert type(result) == str
