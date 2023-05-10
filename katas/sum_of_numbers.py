@@ -17,7 +17,7 @@ Your function should only return a number, not the explanation about how you get
 
 
 def get_sum(a, b):
-    if type(a) != int or type(b):
+    if type(a) != int or type(b) != int:
         raise TypeError("Input number must be an int")
 
     if a == b:
