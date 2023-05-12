@@ -25,25 +25,28 @@ class Sentence:
     def to_string(ordered_words: list):
         return " ".join(ordered_words)
 
+    def order_words(self, unordered_words: list):
+        ordered_words = []
+        for count in self.total:
+            ordered_words = self.__append_word(ordered_words, unordered_words, count)
+        return ordered_words
+
+    def __append_word(self, ordered_words: list, unordered_words: list, count: int):
+        for word in unordered_words:
+            ordered_words = self.__find_word(count, word, ordered_words)
+        return ordered_words
+
+    @staticmethod
+    def __find_word(count: int, word: str, ordered_words: list):
+        if str(count) in word:
+            ordered_words.append(word)
+        return ordered_words
+
 
 def order(s: str):
     words = Sentence(s)
-    unordered_words = words.sentence
-    ordered_words = []
 
-    for count in words.total:
-        ordered_words = order_words(ordered_words, unordered_words, count)
+    unordered_words = words.sentence
+    ordered_words = words.order_words(unordered_words)
 
     return words.to_string(ordered_words)
-
-
-def order_words(ordered_words: list, unordered_words: list, count: int):
-    for word in unordered_words:
-        ordered_words = append_word(count, word, ordered_words)
-    return ordered_words
-
-
-def append_word(count: int, word: str, ordered_words: list):
-    if str(count) in word:
-        ordered_words.append(word)
-    return ordered_words
