@@ -18,18 +18,11 @@ class Sentence:
         self.sentence = sentence.split()
         self.total = range(len(self.sentence) + 1)
 
-        if not sentence:
-            self.sentence = ""
-
-    @staticmethod
-    def to_string(ordered_words: list):
-        return " ".join(ordered_words)
-
     def order_words(self, unordered_words: list):
         ordered_words = []
         for count in self.total:
             ordered_words = self.__append_word(ordered_words, unordered_words, count)
-        return ordered_words
+        return self.format(ordered_words)
 
     def __append_word(self, ordered_words: list, unordered_words: list, count: int):
         for word in unordered_words:
@@ -42,11 +35,13 @@ class Sentence:
             ordered_words.append(word)
         return ordered_words
 
+    @staticmethod
+    def format(ordered_words: list):
+        return " ".join(ordered_words)
+
 
 def order(s: str):
     words = Sentence(s)
-
     unordered_words = words.sentence
-    ordered_words = words.order_words(unordered_words)
 
-    return words.to_string(ordered_words)
+    return words.order_words(unordered_words)
