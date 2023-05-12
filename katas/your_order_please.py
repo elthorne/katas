@@ -21,6 +21,10 @@ class Sentence:
         if not sentence:
             self.sentence = ""
 
+    @staticmethod
+    def to_string(ordered_words):
+        return " ".join(ordered_words)
+
 
 def order(s):
     words = Sentence(s)
@@ -30,7 +34,7 @@ def order(s):
     for count in words.total:
         ordered_words = order_words(ordered_words, unordered_words, count)
 
-    return " ".join(ordered_words)
+    return words.to_string(ordered_words)
 
 
 def order_words(ordered_words, unordered_words, count):
