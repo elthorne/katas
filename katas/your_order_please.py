@@ -16,22 +16,22 @@ Examples
 class Sentence:
     def __init__(self, sentence: str):
         self.sentence = sentence.split()
-        self.total = range(len(self.sentence) + 1)
+        self.total_words = range(len(self.sentence) + 1)
 
-    def order_words(self, unordered_words: list):
+    def order(self):
         ordered_words = []
-        for count in self.total:
-            ordered_words = self.__append_word(ordered_words, unordered_words, count)
+        for number in self.total_words:
+            ordered_words = self.__order_words(ordered_words, number)
         return self.format(ordered_words)
 
-    def __append_word(self, ordered_words: list, unordered_words: list, count: int):
-        for word in unordered_words:
-            ordered_words = self.__find_word(count, word, ordered_words)
+    def __order_words(self, ordered_words: list, number: int):
+        for word in self.sentence:
+            ordered_words = self.__append_word(number, word, ordered_words)
         return ordered_words
 
     @staticmethod
-    def __find_word(count: int, word: str, ordered_words: list):
-        if str(count) in word:
+    def __append_word(number: int, word: str, ordered_words: list):
+        if str(number) in word:
             ordered_words.append(word)
         return ordered_words
 
@@ -41,7 +41,4 @@ class Sentence:
 
 
 def order(s: str):
-    words = Sentence(s)
-    unordered_words = words.sentence
-
-    return words.order_words(unordered_words)
+    return Sentence(s).order()
