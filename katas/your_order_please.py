@@ -16,15 +16,18 @@ Examples
 class Sentence:
     def __init__(self, sentence):
         self.sentence = sentence.split()
+        self.total = range(len(self.sentence) + 1)
+
         if not sentence:
             self.sentence = ""
 
 
 def order(s):
-    unordered_words = Sentence(s).sentence
+    words = Sentence(s)
+    unordered_words = words.sentence
     ordered_words = []
 
-    for count in range(len(unordered_words) + 1):
+    for count in words.total:
         ordered_words = order_words(ordered_words, unordered_words, count)
 
     return " ".join(ordered_words)
