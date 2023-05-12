@@ -17,12 +17,22 @@ def order(sentence):
     if not sentence:
         return ""
 
-    unordered_list_of_words = sentence.split()
-    ordered_list_of_words = []
+    unordered_words = sentence.split()
+    ordered_words = []
 
-    for count in range(len(unordered_list_of_words)+1):
-        for word in unordered_list_of_words:
-            if str(count) in word:
-                ordered_list_of_words.append(word)
+    for count in range(len(unordered_words) + 1):
+        ordered_words = order_words(ordered_words, unordered_words, count)
 
-    return " ".join(ordered_list_of_words)
+    return " ".join(ordered_words)
+
+
+def order_words(ordered_words, unordered_words, count):
+    for word in unordered_words:
+        ordered_words = append_word(count, word, ordered_words)
+    return ordered_words
+
+
+def append_word(count, word, ordered_words):
+    if str(count) in word:
+        ordered_words.append(word)
+    return ordered_words
