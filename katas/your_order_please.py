@@ -14,7 +14,7 @@ Examples
 
 
 class Sentence:
-    def __init__(self, sentence):
+    def __init__(self, sentence: str):
         self.sentence = sentence.split()
         self.total = range(len(self.sentence) + 1)
 
@@ -22,11 +22,11 @@ class Sentence:
             self.sentence = ""
 
     @staticmethod
-    def to_string(ordered_words):
+    def to_string(ordered_words: list):
         return " ".join(ordered_words)
 
 
-def order(s):
+def order(s: str):
     words = Sentence(s)
     unordered_words = words.sentence
     ordered_words = []
@@ -37,13 +37,13 @@ def order(s):
     return words.to_string(ordered_words)
 
 
-def order_words(ordered_words, unordered_words, count):
+def order_words(ordered_words: list, unordered_words: list, count: int):
     for word in unordered_words:
         ordered_words = append_word(count, word, ordered_words)
     return ordered_words
 
 
-def append_word(count, word, ordered_words):
+def append_word(count: int, word: str, ordered_words: list):
     if str(count) in word:
         ordered_words.append(word)
     return ordered_words
