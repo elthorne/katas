@@ -13,11 +13,15 @@ Examples
 """
 
 
-def order(sentence):
-    if not sentence:
-        return ""
+class Sentence:
+    def __init__(self, sentence):
+        self.sentence = sentence.split()
+        if not sentence:
+            self.sentence = ""
 
-    unordered_words = sentence.split()
+
+def order(s):
+    unordered_words = Sentence(s).sentence
     ordered_words = []
 
     for count in range(len(unordered_words) + 1):
