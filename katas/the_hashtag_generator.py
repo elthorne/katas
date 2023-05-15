@@ -19,14 +19,19 @@ Examples
 """
 
 
+class Hashtag:
+    def __init__(self, input_string):
+        capitalise = ' '.join(elem.capitalize() for elem in input_string.split())
+        result = f"#{capitalise.replace(' ', '')}"
+
+        self.result = result
+
+        if not input_string:
+            self.result = False
+
+        if len(capitalise) > 140:
+            self.result = False
+
+
 def generate_hashtag(s):
-    if not s:
-        return False
-
-    capitalise = ' '.join(elem.capitalize() for elem in s.split())
-    result = f"#{capitalise.replace(' ', '')}"
-
-    if len(result) > 140:
-        return False
-
-    return result
+    return Hashtag(s).result
