@@ -29,7 +29,7 @@ class Hashtag:
         if not input_string:
             self.result = False
 
-        if len(capitalise) > 140:
+        if len(result) > 140:
             self.result = False
 
 
