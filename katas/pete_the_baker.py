@@ -19,16 +19,29 @@ cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flo
 """
 
 
+class Ingredients:
+    def __init__(self, recipe, available):
+        self.sufficient_ingredients = True
+
+        if len(available) < len(recipe):
+            self.sufficient_ingredients = False
+
+        self.recipe = recipe
+        self.available = available
+
+    def bake(self):
+        if not self.sufficient_ingredients:
+            return 0
+
+        return int(min(self.__divide_ingredients()))
+
+    def __divide_ingredients(self):
+        result = []
+        for ingredient in self.recipe.keys():
+            result.append(self.available[ingredient]/self.recipe[ingredient])
+        return result
+
+
 def cakes(recipe, available):
-    if len(available) < len(recipe):
-        return 0
+    return Ingredients(recipe, available).bake()
 
-    result = []
-
-    for key in recipe.keys():
-        result.append(available[key]/recipe[key])
-
-    lowest_value = min(result)
-    lowest_int = int(lowest_value)
-
-    return lowest_int
