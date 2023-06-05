@@ -19,19 +19,46 @@ Examples
 """
 
 
+class InvalidHashtag(Exception):
+    pass
+
+
+class InvalidSentence(Exception):
+    pass
+
+
+class Sentence:
+    def __init__(self, sentence: str):
+        if sentence == "":
+            raise InvalidSentence("Input cannot be empty")
+
+        self._sentence = sentence
+
+    def get_words(self):
+        return self._sentence.split()
+
+
 class Hashtag:
-    def __init__(self, input_string):
-        capitalise = ' '.join(elem.capitalize() for elem in input_string.split())
-        result = f"#{capitalise.replace(' ', '')}"
+    def __init__(self, hashtag):
+        if len(hashtag) > 140:
+            raise InvalidHashtag(f"Hashtag {hashtag} is greater than 140 characters")
+        self._hashtag = hashtag
 
-        self.result = result
-
-        if not input_string:
-            self.result = False
-
-        if len(result) > 140:
-            self.result = False
+    def to_string(self):
+        return self._hashtag
 
 
-def generate_hashtag(s):
-    return Hashtag(s).result
+def create_hashtag(input_sentence: Sentence) -> Hashtag:
+    capitalise = ' '.join(elem.capitalize() for elem in input_sentence.get_words())
+    result = Hashtag(f"#{capitalise.replace(' ', '')}")
+
+    return result
+
+
+def generate_hashtag(s: str):
+    try:
+        return create_hashtag(Sentence(s)).to_string()
+    except InvalidHashtag:
+        return False
+    except InvalidSentence:
+        return False
