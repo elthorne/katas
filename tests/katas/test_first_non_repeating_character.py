@@ -3,7 +3,7 @@ import pytest
 from katas.first_non_repeating_character import first_non_repeating_letter
 
 
-@pytest.mark.parametrize("input_string, expected_value", [
+@pytest.mark.parametrize("input_sentence, expected_value", [
     ("a", "a"),
     ("stress", "t"),
     ("sTreSS", "T"),

@@ -3,7 +3,7 @@ import pytest
 from katas.the_hashtag_generator import generate_hashtag
 
 
-@pytest.mark.parametrize("input_string, expected", [
+@pytest.mark.parametrize("input_sentence, expected", [
     (" Hello there thanks for trying my Kata", "#HelloThereThanksForTryingMyKata"),
     ("    Hello     World   ", "#HelloWorld"),
     ("", False),
